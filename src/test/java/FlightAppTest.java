@@ -39,7 +39,9 @@ public class FlightAppTest {
     }
 
 
-    //FLIGHT DAO TESTS
+    /**
+     * THESE TESTS ARE FOR THE FLIGHTDAO CLASS
+     */
 
     /**
      * The flightDAO should retrieve all flights when getAllFlights is called.
@@ -156,7 +158,9 @@ public class FlightAppTest {
     }
 
 
-    //FLIGHT SERVICE TESTS
+    /**
+     * THESE TESTS ARE FOR THE FLIGHTSERVICE CLASS
+     */
 
 
     /**
