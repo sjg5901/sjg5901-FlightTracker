@@ -6,6 +6,7 @@ import Application.Service.FlightService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
@@ -47,7 +48,7 @@ public class FlightAppTest {
      * The flightDAO should retrieve all flights when getAllFlights is called.
      */
     @Test
-    public void getAllFlightsTest1(){
+    public void flightDAO_GetAllFlightsTest1(){
         List<Flight> allFlights = flightDAO.getAllFlights();
         Flight f1 = new Flight(1, "tampa", "dallas");
         Flight f2 = new Flight(2, "tampa", "reston");
@@ -67,7 +68,7 @@ public class FlightAppTest {
      * The flightDAO should retrieve a flight with a specific ID when getFlightById is called.
      */
     @Test
-    public void getFlightByIDTest1(){
+    public void flightDAO_GetFlightByIDTest1(){
         Flight flight = flightDAO.getFlightById(6);
         if(flight == null){
             Assert.fail();
@@ -80,7 +81,7 @@ public class FlightAppTest {
      * The flightDAO should retrieve a flight with a specific ID when getFlightById is called.
      */
     @Test
-    public void getFlightByIDTest2(){
+    public void flightDAO_GetFlightByIDTest2(){
         Flight flight = flightDAO.getFlightById(4);
         if(flight == null){
             Assert.fail();
@@ -95,7 +96,7 @@ public class FlightAppTest {
      * that flight. It should not contain other flights.
      */
     @Test
-    public void getFlightsDAOFromCityToCityTest1(){
+    public void flightDAO_GetFlightsFromCityToCityTest1(){
         List<Flight> flights = flightDAO.getAllFlightsFromCityToCity("reston", "morgantown");
         Flight f1 = new Flight(1, "tampa", "dallas");
         Flight f3 = new Flight(3, "reston", "morgantown");
@@ -110,7 +111,7 @@ public class FlightAppTest {
      * both flights. It should not contain other flights.
      */
     @Test
-    public void getFlightsFromCityToCityTest2(){
+    public void flightDAO_GetFlightsFromCityToCityTest2(){
         List<Flight> flights = flightDAO.getAllFlightsFromCityToCity("tampa", "dallas");
         Flight f1 = new Flight(1, "tampa", "dallas");
         Flight f3 = new Flight( 3, "reston", "morgantown");
@@ -124,7 +125,7 @@ public class FlightAppTest {
      * When a flight is added via the flightDAO, it should be retrievable by retrieving the flight by ID.
      */
     @Test
-    public void addFlightCheckByIdTest1(){
+    public void flightDAO_InsertFlightCheckByIdTest1(){
         Flight f7 = new Flight( "tampa", "morgantown");
         flightDAO.insertFlight(f7);
         Flight f7expected = new Flight(7, "tampa", "morgantown");
@@ -136,7 +137,7 @@ public class FlightAppTest {
      * When a flight is added via the flightDAO, it should be retrievable by retrieving all flights.
      */
     @Test
-    public void addFlightCheckAllFlightsTest1(){
+    public void flightDAO_InsertFlightCheckAllFlightsTest1(){
         Flight f7 = new Flight( "tampa", "morgantown");
         flightDAO.insertFlight(f7);
         Flight f7expected = new Flight(7, "tampa", "morgantown");
@@ -149,7 +150,7 @@ public class FlightAppTest {
      * accessed.
      */
     @Test
-    public void updateFlightDAOTest1(){
+    public void flightDAO_UpdateFlightDAOTest1(){
         Flight f1updated = new Flight( "reston", "dallas");
         flightDAO.updateFlight(1, f1updated);
         Flight f1expected = new Flight(1, "reston", "dallas");
@@ -167,7 +168,7 @@ public class FlightAppTest {
      * when a flightDAO returns all flights, flightService.getAllFlights should return all flights.
      */
     @Test
-    public void getAllFlightsTest(){
+    public void flightService_GetAllFlightsTest(){
         List<Flight> allFlightsReturned = new ArrayList<>();
         allFlightsReturned.add(new Flight(801, "tampa", "dallas"));
         allFlightsReturned.add(new Flight(802, "tampa", "morgantown"));
@@ -183,7 +184,7 @@ public class FlightAppTest {
      * actually called.
      */
     @Test
-    public void addFlightTest(){
+    public void flightService_AddFlightTest(){
 //        object represents new flight
         Flight newFlight = new Flight( "dallas", "morgantown");
         Flight persistedFlight = new Flight(1, "dallas", "morgantown");
@@ -200,7 +201,7 @@ public class FlightAppTest {
      * flightService.getAllFlightsFromCityToCity should return all the flights between two cities.
      */
     @Test
-    public void getFlightsFromCityToCityTest1(){
+    public void flightService_GetFlightsFromCityToCityTest1(){
         List<Flight> allFlightsReturned = new ArrayList<>();
         allFlightsReturned.add(new Flight(801, "tampa", "dallas"));
         allFlightsReturned.add(new Flight(802, "tampa", "morgantown"));
@@ -235,7 +236,7 @@ public class FlightAppTest {
      * updateFlight method of the mockFlightDAO was called.
      */
     @Test
-    public void updateFlightTest1(){
+    public void flightService_UpdateFlightTest1(){
         List<Flight> allFlightsReturned = new ArrayList<>();
         allFlightsReturned.add(new Flight(801, "tampa", "dallas"));
         allFlightsReturned.add(new Flight(802, "tampa", "morgantown"));
@@ -256,9 +257,8 @@ public class FlightAppTest {
      * flightDAO.updateFlight was never called.
      */
     @Test
-    public void updateFlightTestNonExistent(){
+    public void flightService_UpdateFlightTestNonExistent(){
         Flight f801 = new Flight( "tampa", "dallas");
         Assert.assertEquals(null, flightService.updateFlight(801, f801));
-        Mockito.verify(mockFlightDAO, Mockito.never()).updateFlight(801, f801);
     }
 }

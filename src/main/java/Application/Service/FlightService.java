@@ -64,6 +64,7 @@ public class FlightService {
      *
      * @param flight_id the ID of the flight to be modified.
      * @param flight an object containing all data that should replace the values contained by the existing flight_id.
+     *         the flight object does not contain a flight ID.
      * @return the newly updated flight if the update operation was successful. Return null if the update operation was
      *         unsuccessful. We do this to inform our application about successful/unsuccessful operations. (eg, the
      *         user should have some insight if they attempted to edit a nonexistent flight.)

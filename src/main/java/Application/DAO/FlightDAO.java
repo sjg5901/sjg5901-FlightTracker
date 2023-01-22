@@ -101,7 +101,7 @@ public class FlightDAO {
      * preparedStatement.setString(1,string1);
      * preparedStatement.setString(2,string2);
      *
-     * @param flight an object modelling a Flight.
+     * @param flight an object modelling a Flight. the flight object does not contain a flight ID.
      */
     public Flight insertFlight(Flight flight){
         Connection connection = ConnectionUtil.getConnection();
@@ -141,7 +141,7 @@ public class FlightDAO {
      * preparedStatement.setInt(3,int1);
      *
      * @param id a flight ID.
-     * @param flight a flight object.
+     * @param flight a flight object. the flight object does not contain a flight ID.
      */
     public void updateFlight(int id, Flight flight){
         Connection connection = ConnectionUtil.getConnection();
@@ -170,7 +170,7 @@ public class FlightDAO {
      * this format, where the first argument identifies the question mark to be filled (left to right, starting
      * from zero) and the second argument identifies the value to be used:
      * preparedStatement.setString(1,"column 1 value");
-     * preparedStatement.setInt(2,123);
+     * preparedStatement.setString(2,"column 2 value");
      *
      * @param departure_city the departing city.
      * @param arrival_city the arriving city.
