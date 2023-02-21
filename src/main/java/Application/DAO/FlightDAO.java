@@ -11,7 +11,7 @@ import java.util.List;
  * A DAO is a class that mediates the transformation of data between the format of objects in Java to rows in a
  * database. The methods here are mostly filled out, you will just need to add a SQL statement.
  *
- * We may assume that the database has already created a table named 'flights'.
+ * We may assume that the database has already created a table named 'flight'.
  * It contains similar values as the Flight class:
  * flight_id, which is of type int,
  * departure_city, which is of type varchar(255),
